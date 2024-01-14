@@ -1,0 +1,16 @@
+{
+    "items": [
+        {
+            "src": "https://picsum.photos/seed/1/600/400",
+            "alt": "Image 1"
+        },
+        {
+            "src": "https://picsum.photos/seed/2/600/400",
+            "alt": "Image 2"
+        },
+        {
+            "src": "https://picsum.photos/seed/3/600/400",
+            "alt": "Image 3"
+        }
+    ]
+}
