@@ -51,22 +51,23 @@ function Header() {
             </div>
 
             <div className='header_right'>
-                <span className='header_icon' id='badge'>
-                    <IoNotifications size={26} />
-                    <span>10</span>
+                <span className='header_icon'>
+                    <IoNotifications id='icon' size={26} />
+                    <span id='badge'>10</span>
                 </span>
-                <span className='header_icon' id='badge'>
-                    <FaCartShopping size={25} />
-                    <span>10</span>
+                <span className='header_icon'>
+                    <FaCartShopping id='icon' size={25} />
+                    <span id='badge'>10</span>
                 </span>
                 <span className='header_icon'>
                     <MdApps size={26} />
                 </span>
                 <Dropdown>
-                    <Dropdown.Title>User</Dropdown.Title>
+                    <Dropdown.Title>Hello</Dropdown.Title>
                     <Dropdown.Menu>
-                        <Dropdown.Item>My Profile</Dropdown.Item>
+                        <Dropdown.Item onClick={() => console.log('My Profile')}>My Profile</Dropdown.Item>
                         <Dropdown.Item>Order History</Dropdown.Item>
+                        <Dropdown.Item style={{ 'color': 'red' }}>Logout</Dropdown.Item>
                         <Dropdown.Item style={{ 'color': 'red' }}>Logout</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>

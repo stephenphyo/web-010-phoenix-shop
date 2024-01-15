@@ -90,33 +90,30 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
     padding: 0.5rem;
     border-radius: 50%;
-    color: var(--color-primary);
+    color: var(--color-text-primary);
     background-color: transparent;
     cursor: pointer;
 }
 
 .header_icon:hover {
     backdrop-filter: blur(5px);
-    background-color: #FFFFFF80;
+    background-color: #FFFFFF20;
 }
 
-.header_icon#badge {
-    position: relative;
-}
-
-.header_icon#badge span {
+.header_icon #badge {
     display: flex;
     position: absolute;
     top: 3px;
-    right: 4px;
+    right: 3px;
     align-items: center;
     justify-content: center;
     min-width: 14px;
     height: 14px;
     padding: 2px;
-    border-radius: 7px;
+    border-radius: 50%;
     font-family: 'Times New Roman';
     font-size: 10px;
     color: var(--color-text-primary);

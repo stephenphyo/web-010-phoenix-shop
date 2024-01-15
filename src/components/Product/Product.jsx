@@ -5,7 +5,10 @@ import './Product.css';
 
 /*** Icon Imports ***/
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
-import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
+import { IoMdHeart, IoMdHeartEmpty, IoMdCheckmarkCircle } from "react-icons/io";
+
+/*** Package Imports ***/
+import numeral from 'numeral';
 
 function Product() {
 
@@ -24,14 +27,18 @@ function Product() {
         console.log('Add to Cart');
     }
 
-    const rating = 3.5
+    const rating = 2.5
     const ratingFull = Math.floor(rating);
     const ratingHalf = rating - ratingFull;
     const ratingEmpty = 5 - Math.ceil(rating);
 
-    const originalPrice = 250
-    const newPrice = 25
-    const discount = Math.ceil(newPrice / originalPrice * 100)
+    const newPrice = 40
+    const originalPrice = 100
+    const discount = Math.ceil((originalPrice - newPrice) / originalPrice * 100)
+
+    const numReviews = 1050000
+    const numSold = 235
+    const numStock = 25
 
     return (
         <div className='product'
@@ -45,24 +52,47 @@ function Product() {
                     Product 1Product 1Product 1Product 1Product 1Product 1Product 1Product 1Product 1Product 1
                 </div>
                 <div className='d-flex'>
+                    <div className='product_price'>
+                        <span id='price'>
+                            <span id='currency'>$</span>
+                            <span>{newPrice}</span>
+                            <span id='original_price'>{`$${originalPrice}`}</span>
+                        </span>
+                    </div>
+                    <div className='product_stock'>
+                        <span>
+                            {numStock <= 20 ? 'Only' : ''} {numStock} items left
+                        </span>
+                    </div>
+                </div>
+                <div className='d-flex'>
                     <div className='product_ratings'>
                         <div className='product_ratings_star'>
                             {Array(ratingFull).fill().map((_, index) => <FaStar size={15} />)}
                             {ratingHalf !== 0 && <FaStarHalfAlt size={15} />}
                             {Array(ratingEmpty).fill().map((_, index) => <FaRegStar size={15} />)}
                         </div>
-                        <span id='num_reviews'>(0)</span>
+                        <span id='num_reviews'>
+                            ({numeral(numReviews).format('0.0a').toUpperCase()})
+                        </span>
                     </div>
                     <div className='product_sold'>
-                        <span><span className='fw-bold'>183</span> sold</span>
+                        <span>
+                            <span className='fw-bold'>
+                                {numeral(numSold).format('0.0a').toUpperCase()}
+                            </span> sold
+                        </span>
                     </div>
                 </div>
-                <div className='product_price'>
-                    <span id='price'>
-                        <span id='currency'>$</span>
-                        <span>{originalPrice}</span>
-                        <span id='original_price'>{`$${newPrice}`}</span>
-                    </span>
+                <div>
+                    <div className='product_seller'>
+                        <img src='https://upload.wikimedia.org/wikipedia/commons/8/8a/Bouclier_Captain_America_1018.png'
+                            alt='' />
+                        <span className='product_seller_name'>
+                            Stephen Shop
+                            <span id='mark'><IoMdCheckmarkCircle size={13} /></span>
+                        </span>
+                    </div>
                 </div>
                 <div className='product_controls'>
                     <button id='buy_now'

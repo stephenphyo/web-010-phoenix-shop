@@ -69,7 +69,7 @@
 }
 
 .product_price #price {
-    font-size: 17px;
+    font-size: 20px;
     font-weight: 600;
     color: var(--color-primary);
 }
@@ -85,6 +85,44 @@
     font-weight: 500;
     color: var(--color-dark);
     text-decoration: line-through;
+}
+
+.product_stock {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    padding: 0 0.5rem;
+    font-size: 12px;
+}
+
+.product_seller {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    margin-top: 0.5rem;
+    padding: 0.2rem 1rem 0.2rem 0.2rem;
+    border-radius: 5px;
+}
+
+.product_seller:hover {
+    background-color: #00000020;
+}
+
+.product_seller img {
+    width: 30px;
+    height: 30px;
+    margin-right: 0.5rem;
+    border-radius: 50%;
+}
+
+.product_seller_name {
+    position: relative;
+}
+
+.product_seller_name #mark {
+    position: absolute;
+    top: -5px;
+    color: var(--color-primary);
 }
 
 .product_controls {
