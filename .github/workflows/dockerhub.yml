@@ -76,6 +76,6 @@ jobs:
           password: ${{ secrets.DEPLOYMENT_SERVER_PASSWORD }}
           script: |
             docker image pull --platform linux/x86_64 docker.io/stephenphyo/web-010-phoenix-shop-frontend
-            docker container stop web-010-phoenix-shop-frontend
-            docker container rm web-010-phoenix-shop-frontend
+            docker container stop web-010-phoenix-shop-frontend || true
+            docker container rm web-010-phoenix-shop-frontend || true
             docker run -d --name web-010-phoenix-shop-frontend --restart unless-stopped -p 3010:80 -p 3510:443 --platform linux/arm64 docker.io/stephenphyo/web-010-phoenix-shop-frontend
