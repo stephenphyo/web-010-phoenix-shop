@@ -8,7 +8,7 @@ import Header from 'components/Header/Header';
 
 function MainLayout() {
     return (
-        <main className='app'>
+        <>
             <section className='app_header'>
                 <Header />
             </section>
@@ -17,7 +17,7 @@ function MainLayout() {
                     <Outlet />
                 </div>
             </section>
-        </main>
+        </>
     );
 }
 

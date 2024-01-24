@@ -11,7 +11,7 @@ import { SidebarContextProvider } from 'contexts/SidebarContext';
 
 /*** Redux Imports ***/
 import { Provider } from 'react-redux';
-import { store } from './redux/store';
+import { store } from './redux-app/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

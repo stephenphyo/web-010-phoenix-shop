@@ -1,0 +1,116 @@
+.login {
+    --padding: 2rem 1.75rem;
+    --font-family: 'Poppins';
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-family);
+    border: 2px solid var(--color-primary);
+    background-color: white;
+    padding: var(--padding);
+    user-select: none;
+}
+
+.login_logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 6rem;
+    height: 6rem;
+    top: -3rem;
+    border-radius: 50%;
+    background-color: aqua;
+    cursor: pointer;
+}
+
+.login_logo {}
+
+.login_header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: green;
+}
+
+.login_fields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 1rem;
+    gap: 0.1rem;
+}
+
+.login_sub {
+    display: flex;
+    width: 100%;
+    margin-top: 0.5rem;
+    font-size: 11px;
+}
+
+.login_sub #remember {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.login_sub #forgot {
+    display: flex;
+    margin-left: auto;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    transition: 0.1s ease;
+}
+
+.login_sub #forgot:hover {
+    color: var(--color-primary);
+}
+
+.form_button#google,
+.form_button#facebook {
+    color: var(--color-primary);
+    background-color: var(--color-text-primary);
+}
+
+.login_footer {
+    display: flex;
+    margin-top: 0.5rem;
+    font-size: 11px;
+    color: var(--color-text-primary);
+    gap: 0.5rem;
+}
+
+.login_footer #register {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.login_footer #register:hover {
+    color: var(--color-primary);
+}
+
+.login_separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 2rem;
+    margin-top: 0.75rem;
+    gap: 1.5rem;
+}
+
+.login_separator hr {
+    width: 5rem;
+    height: 0.5rem;
+    margin-top: 1.5rem;
+}

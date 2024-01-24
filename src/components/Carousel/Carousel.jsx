@@ -1,12 +1,14 @@
-/*** CSS Imports ***/
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 /*** CSS Imports ***/
 import './Carousel.css';
 
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
 
-function Carousel({ data }) {
+function Carousel({ children }) {
+
+    /* Constants */
+    const childCount = React.Children.count(children);
 
     /* useState */
     const [slide, setSlide] = useState(0);
@@ -14,7 +16,7 @@ function Carousel({ data }) {
     /* Functions */
     const nextSlide = () => {
         setSlide(
-            slide === data.length - 1
+            slide === childCount - 1
                 ? 0
                 : slide + 1
         )
@@ -23,7 +25,7 @@ function Carousel({ data }) {
     const prevSlide = () => {
         setSlide(
             slide === 0
-                ? data.length - 1
+                ? childCount - 1
                 : slide - 1
         )
     }
@@ -31,19 +33,20 @@ function Carousel({ data }) {
     return (
         <div className='sp-carousel'>
             {
-                data.length > 1 &&
+                childCount > 1 &&
                 <FaArrowAltCircleLeft
                     className='arrow left'
                     onClick={prevSlide} />
             }
             {
-                data.map((item, idx) => (
-                    <img src={item.src} alt={item.alt} key={idx}
-                        className={`slide ${slide === idx ? '' : 'hidden'}`} />
+                React.Children.map(children, (child, idx) => (
+                    React.cloneElement(child, {
+                        isActive: slide === idx,
+                    })
                 ))
             }
             {
-                data.length > 1 &&
+                childCount > 1 &&
                 <FaArrowAltCircleRight
                     className='arrow right'
                     onClick={nextSlide} />
@@ -51,5 +54,16 @@ function Carousel({ data }) {
         </div>
     );
 }
+
+const CarouselItem = ({ isActive, children }) => {
+    return (
+      <div className={`slide ${isActive ? '' : 'hidden'}`}>
+        {children}
+      </div>
+    );
+  };
+
+Carousel.Carousel = Carousel;
+Carousel.Item = CarouselItem;
 
 export default Carousel;

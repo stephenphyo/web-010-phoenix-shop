@@ -1,15 +1,3 @@
-.app {
-    display: flex;
-    flex-direction: column;
-    min-width: 100vw;
-    min-height: 100vh;
-    font-family: var(--font-primary);
-    font-size: 14px;
-    color: var(--color-text);
-    background-color: var(--color-dark);
-    background-attachment: fixed;
-}
-
 .app_header {
     position: sticky;
     top: 0;

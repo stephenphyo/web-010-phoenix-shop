@@ -40,53 +40,52 @@ function Dropdown(props) {
 
 /*** Dropdown Title ***/
 function Title(props) {
+
     /* useContext */
     const { isDropdownOpen, setIsDropdownOpen } = useContext(DropdownContext);
 
+    /* Functions */
+    const handleClick = (e) => {
+        e.stopPropagation();
+        setIsDropdownOpen(!isDropdownOpen);
+    }
+
     return (
         <p className='sp-dropdown-title'
-            onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
-            {props.children} <IoMdArrowDropdown size={22} />
+            onClick={(e) => handleClick(e)}>
+            {props.children}
+            {props.enableArrow && <IoMdArrowDropdown size={20} />}
         </p>
     )
 }
 
 /*** Dropdown Menu ***/
 function Menu(props) {
+
     /* useContext */
     const { isDropdownOpen, setIsDropdownOpen } = useContext(DropdownContext);
 
     /* useRef */
     const dropdownRef = useRef(null);
 
-    /* Functions */
-
-
     /* useEffect */
     useEffect(() => {
         const handleExternalClick = (e) => {
-        if (isDropdownOpen) {
-            console.log(dropdownRef.current.contains(e.target))
-            console.log(dropdownRef.current.contains(e.target.parentNode))
-            console.log(dropdownRef.current.contains(e.target.parentTarget))
-        //     if (dropdownRef.current && !dropdownRef.current.contains(e.target)){
-        //     setIsDropdownOpen(false);
-        // }
-        }
+            if (isDropdownOpen && dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+                setIsDropdownOpen(false);
+                console.log('Listen');
+            }
         }
 
-        if (isDropdownOpen) {
-            document.addEventListener('click', handleExternalClick);
-            console.log('Listeb')
+        document.addEventListener('click', handleExternalClick);
 
-            return () => {
+        return () => {
             document.removeEventListener('click', handleExternalClick);
-        }
         }
     }, [isDropdownOpen]);
 
     return (
-        <ul ref={dropdownRef}
+        <ul ref={dropdownRef} onClick={() => setIsDropdownOpen(false)}
             className={`sp-dropdown-menu ${isDropdownOpen ? 'open' : ''}`}>
             {props.children}
         </ul>
@@ -95,11 +94,25 @@ function Menu(props) {
 
 /*** Dropdown Item ***/
 function Item(props) {
+    const clickable = props?.clickable ?? true;
     return (
-        <div className='sp-dropdown-item' {...props}>
+        <div className={`sp-dropdown-item ${clickable ? 'clickable' : ''}`}
+            {...props}>
             <span className='dropdown-item-icon-left'>{props.leftIcon}</span>
             {props.children}
             <span className='dropdown-item-icon-right'>{props.rightIcon}</span>
+        </div>
+    );
+}
+
+/*** Dropdown Separator ***/
+function Separator(props) {
+    return (
+        <div className='sp-dropdown-separator'>
+            <hr style={{
+                backgroundColor: props?.color ?? '#FFFFFF',
+                height: props?.height ?? '1px'
+            }} />
         </div>
     );
 }
@@ -108,5 +121,6 @@ Dropdown.Dropdown = Dropdown;
 Dropdown.Title = Title
 Dropdown.Menu = Menu;
 Dropdown.Item = Item;
+Dropdown.Separator = Separator;
 
 export default Dropdown;

@@ -1,14 +1,27 @@
-:root {
+.app {
     --app-header-height: 60px;
 
     --font-primary: 'sans-serif';
 
     --color-primary: #FC4000;
     --color-secondary: cyan;
-    --color-dark: #16181B;
-    --color-text-primary: white;
+    --color-header-background: #16181B;
+    --color-background: #F8F8F8;
+    --color-text-primary: #000000;
+    --color-text-secondary: #FFFFFF;
 }
 
-.container {
-    max-width: 1280px !important;
+.app {
+    display: flex;
+    flex-direction: column;
+    min-width: 100vw;
+    min-height: 100vh;
+    font-family: var(--font-primary);
+    font-size: 14px;
+    color: var(--color-text);
+    background-color: var(--color-background);
+    background-attachment: fixed;
 }
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');

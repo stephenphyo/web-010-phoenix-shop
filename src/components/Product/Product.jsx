@@ -10,7 +10,9 @@ import { IoMdHeart, IoMdHeartEmpty, IoMdCheckmarkCircle } from "react-icons/io";
 /*** Package Imports ***/
 import numeral from 'numeral';
 
-function Product() {
+import Carousel from 'components/Carousel/Carousel';
+
+function Product({ data }) {
 
     /* useState */
     const [isLiked, setIsLiked] = useState(false);
@@ -27,59 +29,73 @@ function Product() {
         console.log('Add to Cart');
     }
 
-    const rating = 2.5
+    const rating = Math.floor(data?.ratings * 2) / 2;
     const ratingFull = Math.floor(rating);
     const ratingHalf = rating - ratingFull;
     const ratingEmpty = 5 - Math.ceil(rating);
 
-    const newPrice = 40
-    const originalPrice = 100
-    const discount = Math.ceil((originalPrice - newPrice) / originalPrice * 100)
-
-    const numReviews = 1050000
+    // const newPrice = 40
+    // const originalPrice = 100
+    const discount = Math.ceil((data?.originalPrice - data?.newPrice) / data?.originalPrice * 100)
     const numSold = 235
-    const numStock = 25
+    // const numStock = 25
 
     return (
         <div className='product'
             onClick={() => console.log('View Product')}>
             <div className='product_image'>
-                <img src="https://images.gamewatcherstatic.com/image/file/0/98/87240/avengers_wallpaper_1920x1080_by_sachso74-d8giflj_copy.jpg"
-                    alt='' />
+                <Carousel>
+                    {
+                        data?.images.map((image, idx) => (
+                            <Carousel.Item key={idx}>
+                                <img src={image?.url}
+                                    alt={image?.public_id} />
+                            </Carousel.Item>
+                        ))
+                    }
+                </Carousel>
             </div>
             <div className='product_info'>
                 <div className='product_name'>
-                    Product 1Product 1Product 1Product 1Product 1Product 1Product 1Product 1Product 1Product 1
+                    {data?.name}
                 </div>
                 <div className='d-flex'>
                     <div className='product_price'>
                         <span id='price'>
                             <span id='currency'>$</span>
-                            <span>{newPrice}</span>
-                            <span id='original_price'>{`$${originalPrice}`}</span>
+                            <span>{data?.newPrice}</span>
+                            <span id='original_price'>{`$${data?.originalPrice}`}</span>
                         </span>
                     </div>
                     <div className='product_stock'>
                         <span>
-                            {numStock <= 20 ? 'Only' : ''} {numStock} items left
+                            {data?.numStock <= 20 ? 'Only' : ''} {data?.numStock} items left
                         </span>
                     </div>
                 </div>
                 <div className='d-flex'>
                     <div className='product_ratings'>
                         <div className='product_ratings_star'>
-                            {Array(ratingFull).fill().map((_, index) => <FaStar size={15} />)}
+                            {Array(ratingFull).fill().map((_, index) => <FaStar key={index} size={15} />)}
                             {ratingHalf !== 0 && <FaStarHalfAlt size={15} />}
-                            {Array(ratingEmpty).fill().map((_, index) => <FaRegStar size={15} />)}
+                            {Array(ratingEmpty).fill().map((_, index) => <FaRegStar key={index} size={15} />)}
                         </div>
                         <span id='num_reviews'>
-                            ({numeral(numReviews).format('0.0a').toUpperCase()})
+                            ({
+                                data?.numReviews > 1000
+                                    ? numeral(data?.numReviews).format('0.0a').toUpperCase()
+                                    : data?.numReviews
+                            })
                         </span>
                     </div>
                     <div className='product_sold'>
                         <span>
                             <span className='fw-bold'>
-                                {numeral(numSold).format('0.0a').toUpperCase()}
+                                {
+                                    numSold > 1000
+                                        ? numeral(numSold).format('0.0a').toUpperCase()
+                                        : numSold
+                                }
                             </span> sold
                         </span>
                     </div>
@@ -119,9 +135,12 @@ function Product() {
                             : <IoMdHeartEmpty size={22} />
                 }
             </div>
-            <div className='product_discount'>
-                <span>{discount}% Off</span>
-            </div>
+            {
+                discount !== 0 &&
+                <div className='product_discount'>
+                    <span>{discount}% Off</span>
+                </div>
+            }
         </div>
     );
 }

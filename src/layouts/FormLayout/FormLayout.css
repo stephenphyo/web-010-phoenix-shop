@@ -1,0 +1,14 @@
+.form_layout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.form_layout_container {
+    min-width: 320px;
+    border-radius: 5px;
+    margin: 50px 0;
+    /* overflow: hidden; */
+    box-shadow: 2px 2px 3px #00000080;
+}
