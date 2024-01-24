@@ -1,17 +1,29 @@
 const router = require('express').Router();
 
+/*** Controller Imports ***/
 const productsCtrl = require('../controllers/products.controller');
 
-/* GET */
-router.get('/', productsCtrl.getAllProducts);
-router.get('/search', productsCtrl.searchProducts);
-router.get('/:id', productsCtrl.getProductById);
+/*** Middleware Imports ***/
+const { validateAuthentication, validateAuthorization } = require('../middleware/auth.middleware');
 
+/*** Routers ***/
+const userRouter = require('express').Router();
+const adminRouter = require('express').Router();
+
+/** USER ROUTES **/
+/* GET */
+userRouter.get('/', productsCtrl.getAllProducts);
+userRouter.get('/search', productsCtrl.getSearchProducts);
+userRouter.get('/:id', productsCtrl.getProductById);
+
+
+/** ADMIN ROUTES **/
 /* POST */
-router.post('/new', productsCtrl.postNewProduct);
+adminRouter.post('/create', validateAuthentication, validateAuthorization('user'), productsCtrl.postNewProduct);
 
 /* DELETE */
-router.delete('/delete/:id', productsCtrl.deleteProduct);
+adminRouter.delete('/delete/:id', validateAuthentication, validateAuthorization('user'), productsCtrl.deleteProduct);
 
-
+router.use('/products', userRouter);
+router.use('/admin/products', adminRouter);
 module.exports = router;

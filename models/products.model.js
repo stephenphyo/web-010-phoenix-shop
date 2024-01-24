@@ -17,21 +17,25 @@ const productsSchema = new mongoose.Schema({
         enum: {
             values: [
                 'Electronics', 'Cameras', 'Laptops',
-                'Computers & Accessories',, 'Headphones',
+                'Computers & Accessories', , 'Headphones',
                 'Food', 'Books', 'Sports', 'Outdoor', 'Home',
-                
+
             ],
             message: 'Please select correct category'
         }
     },
-    seller: { type: String, required: true },
+    seller: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Account',
+        required: true
+    },
     numStock: { type: Number, required: true },
     numReviews: { type: Number, required: true, default: 0 },
     reviews: [
         {
-            user: {
+            account: {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: 'User',
+                ref: 'Account',
                 required: true
             },
             rating: { type: Number, required: true },

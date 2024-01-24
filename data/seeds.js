@@ -4,7 +4,7 @@ const seeds = [
       originalPrice: 799.99,
       newPrice: 759.99,
       description: "Powerful flagship phone with a stunning display and advanced camera features.",
-      ratings: 4.6,
+      ratings: 2.6,
       images: [
         { public_id: "samsung/demo/123abc", url: "https://picsum.photos/seed/1/600/400" },
         { public_id: "samsung/demo/456def", url: "https://picsum.photos/seed/2/600/400" },
@@ -20,7 +20,7 @@ const seeds = [
       originalPrice: 1299.99,
       newPrice: 1299.99,
       description: "Powerful and portable laptop for professionals with Apple's M1 chip.",
-      ratings: 4.9,
+      ratings: 3.9,
       images: [
         { public_id: "apple/demo/789xyz", url: "https://picsum.photos/seed/3/600/400" },
         { public_id: "apple/demo/101pqr", url: "https://picsum.photos/seed/4/600/400" },
@@ -36,7 +36,7 @@ const seeds = [
       originalPrice: 799.99,
       newPrice: 799.99,
       description: "Capture stunning aerial photos and videos with this powerful and compact drone.",
-      ratings: 4.7,
+      ratings: 4.1,
       images: [
         { public_id: "dji/demo/222efg", url: "https://picsum.photos/seed/5/600/400" },
         { public_id: "dji/demo/333hij", url: "https://picsum.photos/seed/6/600/400" },
@@ -70,8 +70,8 @@ const seeds = [
       description: "High-resolution full-frame camera with advanced features for professional photography.",
       ratings: 4.9,
       images: [
-        { public_id: "nikon/demo/666qrs", url: "http://example.com/d850_1.jpg" },
-        { public_id: "nikon/demo/777tuv", url: "http://example.com/d850_2.jpg" },
+        { public_id: "nikon/demo/666qrs", url: "https://picsum.photos/seed/9/600/400" },
+        { public_id: "nikon/demo/777tuv", url: "https://picsum.photos/seed/10/600/400" },
       ],
       category: "Cameras",
       seller: "Nikon",

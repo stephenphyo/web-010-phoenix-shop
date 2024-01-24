@@ -1,0 +1,19 @@
+FROM --platform=linux/arm64 node:18
+
+# Set '/app' as the Working Directory
+WORKDIR /app
+
+# Copy 'package.json' and 'package-lock.json' to the Working Directory
+COPY package*.json ./
+
+# Install Packages & Dependencies
+RUN npm install
+
+# Copy the rest of the Application Code
+COPY . .
+
+# Expose Port 9010 for the Application
+EXPOSE 9010
+
+# Start Application
+CMD ["npm", "start"]
